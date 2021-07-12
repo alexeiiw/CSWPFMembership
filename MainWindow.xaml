@@ -1,0 +1,221 @@
+﻿<mah:MetroWindow x:Class="CarteraSaneada.MainWindow"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarteraSaneada"
+        mc:Ignorable="d"
+        Title="CARTERA SANEADA V1 Desarrollo" Height="475" Width="800" ShowMaxRestoreButton="False" Loaded="OnLoad">
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <!--Define botones de menu-->
+            <Button Name="btnPagar" Content="Pagar" IsEnabled="False" Click="btnPagar_Click" />
+            <Button Name="btnAplicar" Content="Aplicar" IsEnabled="False" Click="btnAplicar_Click"/>
+            <Button Name="btnCancelar" Content="Cancelar" Click="btnCancelar_Click"/>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+
+    <Grid>
+        <TabControl x:Name="tabControl">
+
+            <TabItem Header="Datos Cliente" Name="tabCliente">
+                <Grid Background="#FFE5E5E5">
+                    <!--Cabecera para la busqueda-->
+                    <Label x:Name="label" Content="Nombre del Cliente:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Margin="140,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="0" CharacterCasing="Upper"/>
+                    <Label x:Name="label51" Content="Código:" HorizontalAlignment="Left" Margin="460,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Margin="520,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" TabIndex="1" CharacterCasing="Upper"/>
+                    <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="655,10,0,0" VerticalAlignment="Top" TabIndex="2" Click="btnBuscar_Click"/>
+
+                    <!--Detalle de la cabecera de campos-->
+                    <Label x:Name="label1" Content="Código:" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblCodigo" Content="4646" HorizontalAlignment="Left" Margin="80,50,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label2" Content="Dirección Principal:" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblDireccionPrincipal" Content="CONSULTORIA TECNICA S.A." HorizontalAlignment="Left" Margin="165,80,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label3" Content="Dirección Trabajo:" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblDireccionTrabajo" Content="CONSULTORIA TECNICA S.A." HorizontalAlignment="Left" Margin="165,110,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label4" Content="Teléfono Móvil:" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" FontSize="16"  />
+                    <Label x:Name="lblTelefonoMovil" Content="5454 5454" HorizontalAlignment="Left" Margin="140,140,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label5" Content="Teléfono Casa:" HorizontalAlignment="Left" Margin="240,140,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblTelefonoCasa" Content="2222 8888" HorizontalAlignment="Left" Margin="365,140,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label6" Content="Teléfono Trabajo:" HorizontalAlignment="Left" Margin="460,140,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblTelefonoTrabajo" Content="2240 6588" HorizontalAlignment="Left" Margin="605,140,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label7" Content="Correo Electrónico:" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblCorreo" Content="correo@correo.com" HorizontalAlignment="Left" Margin="160,170,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label8" Content="Trabajo:" HorizontalAlignment="Left" Margin="400,170,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblTrabajo" Content="Canella" HorizontalAlignment="Left" Margin="470,170,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+
+                    <!--Montos-->
+                    <Label x:Name="label14" Content="Consolidado:" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Black"/>
+                    <Label x:Name="label9" Content="Total Monto:" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblMonto" Content=" Q. 10,000.00" HorizontalAlignment="Left" Margin="130,230,0,0" VerticalAlignment="Top" FontSize="16" Foreground="MediumVioletRed" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label10" Content="Total Interes:" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblInteres" Content=" Q. 20,000.00" HorizontalAlignment="Left" Margin="130,260,0,0" VerticalAlignment="Top" FontSize="16" Foreground="MediumVioletRed" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label11" Content="Total Recargo:" HorizontalAlignment="Left" Margin="10,290,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblRecargo" Content=" Q. 30,000.00" HorizontalAlignment="Left" Margin="130,290,0,0" VerticalAlignment="Top" FontSize="16" Foreground="MediumVioletRed" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label12" Content="Total Pagado:" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblPagado" Content="-Q. 40,000.00" HorizontalAlignment="Left" Margin="130,320,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label13" Content="Saldo:" HorizontalAlignment="Left" Margin="10,350,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Label x:Name="lblSaldo" Content=" Q. 50,000.00" HorizontalAlignment="Left" Margin="130,350,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Red" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+
+                    <!--Generales-->
+                    <Label x:Name="label15" Content="Generales:" HorizontalAlignment="Left" Margin="400,200,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Black"/>
+                    <Label x:Name="label16" Content="Empresa:" HorizontalAlignment="Left" Margin="400,230,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblEmpresa" Content="MR. CREDIT" HorizontalAlignment="Left" Margin="510,230,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label17" Content="Total Cuentas:" HorizontalAlignment="Left" Margin="400,260,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblCuentas" Content=" 4" HorizontalAlignment="Left" Margin="510,260,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label37" Content="Fecha Perdida:" HorizontalAlignment="Left" Margin="400,290,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblFechaPerdida" Content=" 01/06/2020" HorizontalAlignment="Left" Margin="510,290,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label50" Content="Estado:" HorizontalAlignment="Left" Margin="400,320,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblEstadoCuenta" Content="Pendiente" HorizontalAlignment="Left" Margin="510,320,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Cuentas" Name="tabCuentas">
+                <Grid Name="MCGrid" Width="750" ShowGridLines="False" Background="#FFE5E5E5" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Text="NO_DOCUMENTO" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Text="FECHA" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Text="TIPO_DOCUMENTO" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="3" Text="MARCA" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="4" Text="TOTAL_MONTO" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="5" Text="Acción" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="0">164541</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="1">30/06/2021</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="2">FACTURA</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="3">YAMAHA</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="4">Q. 10,000.00</TextBlock>
+
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="0">168541</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="1">30/05/2021</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="2">CREDITO</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="3">YAMAHA</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="4">Q 25,000.00</TextBlock>
+
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="0">5896551511011</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="1">30/04/2021</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="2">FACTURA</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="3">CANON</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="4">Q.  6,000.00</TextBlock>
+                    <Button Name="boton1" Content="DETALLE" Grid.Row="3" Grid.Column="5"></Button>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Detalle" Name="tabDetalle">
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="label33" Content="No. Documento:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblDocumento" Content="01010104000800" HorizontalAlignment="Left" Margin="140,10,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label34" Content="Fecha Documento:" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblFechaDocumento" Content="21/06/2021" HorizontalAlignment="Left" Margin="490,10,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+
+                    <Label x:Name="label36" Content="Tipo Documento:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblTipoDocumento" Content="CREDITO" HorizontalAlignment="Left" Margin="140,40,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label35" Content="Fecha Vencimiento:" HorizontalAlignment="Left" Margin="340,40,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblFechaVencimiento" Content="21/07/2021" HorizontalAlignment="Left" Margin="490,40,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+
+                    <Label x:Name="label38" Content="Sub Producto:" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblSubProducto" Content="COLABORADOR INTERNO" HorizontalAlignment="Left" Margin="120,70,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label39" Content="Marca / Empresa:" HorizontalAlignment="Left" Margin="340,70,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblMarca" Content="Yamaha" HorizontalAlignment="Left" Margin="490,70,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+
+                    <Label x:Name="label40" Content="Serie Factura:" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblSerieFactura" Content="CZDJ1234" HorizontalAlignment="Left" Margin="120,100,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label41" Content="Factura:" HorizontalAlignment="Left" Margin="340,100,0,0" VerticalAlignment="Top" FontSize="16"/>
+                    <Label x:Name="lblFactura" Content="123456" HorizontalAlignment="Left" Margin="490,100,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+
+                    <!--Montos Detalle-->
+                    <Label x:Name="label42" Content="Detalle Montos:" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Black"/>
+                    <Label x:Name="label43" Content="Total Monto:" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblMontoD" Content=" Q. 10,000.00" HorizontalAlignment="Left" Margin="130,180,0,0" VerticalAlignment="Top" FontSize="16" Foreground="MediumVioletRed" FontWeight="Bold"/>
+                    <Label x:Name="label44" Content="Total Interes:" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblInteresD" Content=" Q. 20,000.00" HorizontalAlignment="Left" Margin="130,210,0,0" VerticalAlignment="Top" FontSize="16" Foreground="MediumVioletRed" FontWeight="Bold"/>
+                    <Label x:Name="label45" Content="Total Recargo:" HorizontalAlignment="Left" Margin="10,240,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblRecargoD" Content=" Q. 30,000.00" HorizontalAlignment="Left" Margin="130,240,0,0" VerticalAlignment="Top" FontSize="16" Foreground="MediumVioletRed" FontWeight="Bold"/>
+                    <Label x:Name="label46" Content="Total Pagado:" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <Label x:Name="lblPagadoD" Content="-Q. 40,000.00" HorizontalAlignment="Left" Margin="130,270,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+                    <Label x:Name="label47" Content="Saldo:" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Label x:Name="lblSaldoD" Content=" Q. 50,000.00" HorizontalAlignment="Left" Margin="130,300,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Red" FontWeight="Bold"/>
+                </Grid>                
+            </TabItem>
+
+            <TabItem Header="Pagos" Name="tabPagos">
+                <Grid Background="#FFE5E5E5">
+                    <!--Cabecera para la busqueda-->
+                    <Label x:Name="label28" Content="Documento:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+                    <Label x:Name="lblDocumentos" Content="0101020203" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+
+                    <!--Montos-->
+                    <Label x:Name="label18" Content="Datos Documento:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Black"/>
+                    <Label x:Name="label19" Content="Total Monto Q.:" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <TextBox x:Name="txtMonto" HorizontalAlignment="Left" Margin="140,70,0,0" Text="Q. 10,000.00" VerticalAlignment="Top" Width="120" IsEnabled="False" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label20" Content="Total Interes Q.:" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <TextBox x:Name="txtInteres" HorizontalAlignment="Left" Margin="140,100,0,0" Text="Q. 1,000.00" VerticalAlignment="Top" Width="120" IsEnabled="False" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label21" Content="Total Recargo Q.:" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <TextBox x:Name="txtRecargo" HorizontalAlignment="Left" Margin="140,130,0,0" Text="Q. 100.00" VerticalAlignment="Top" Width="120" IsEnabled="False" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label48" Content="Total Pagado Q.:" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <TextBox x:Name="txtPagado" HorizontalAlignment="Left" Margin="140,160,0,0" Text="Q. 11,100.00" VerticalAlignment="Top" Width="120" IsEnabled="False" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label22" Content="Saldo Q.:" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <TextBox x:Name="txtSaldo" HorizontalAlignment="Left" Margin="140,190,0,0" Text="Q. 11,100.00" VerticalAlignment="Top" Width="120" IsEnabled="False" HorizontalContentAlignment="Right"/>
+
+                    <!--Pagar-->
+                    <Label x:Name="label23" Content="Datos a Pagar:" HorizontalAlignment="Left" Margin="310,40,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Black"/>
+                    <Label x:Name="label24" Content="Total Monto Q.:" HorizontalAlignment="Left" Margin="310,70,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <TextBox x:Name="txtMontoP" HorizontalAlignment="Left" Margin="445,70,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label25" Content="Total Interes Q.:" HorizontalAlignment="Left" Margin="310,100,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <TextBox x:Name="txtInteresP" HorizontalAlignment="Left" Margin="445,100,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label26" Content="Total Recargo Q.:" HorizontalAlignment="Left" Margin="310,130,0,0" VerticalAlignment="Top" FontSize="16" />
+                    <TextBox x:Name="txtRecargoP" HorizontalAlignment="Left" Margin="445,130,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label27" Content="Total a Pagar Q.:" HorizontalAlignment="Left" Margin="310,190,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <TextBox x:Name="txtSaldoP" HorizontalAlignment="Left" Margin="445,190,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Right" IsEnabled="False"/>
+
+                    <Button x:Name="btnCalcular" Content="Calcular" HorizontalAlignment="Left" Margin="580,190,0,0" VerticalAlignment="Top" Click="btnCalcular_Click"/>
+
+                    <Label x:Name="label52" Content="Comentarios:" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" />
+                    <TextBox x:Name="txtComentarios" HorizontalAlignment="Left" Margin="10,250,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="640" Height="40" CharacterCasing="Upper"/>
+
+                    <Label x:Name="label29" Content="Cancela el documento?" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+                    <CheckBox x:Name="chkCancela" Margin="200,305,0,0" VerticalAlignment="Top" />
+                    <Label x:Name="label49" Content="Total de Documentos:" HorizontalAlignment="Left" Margin="250,300,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+                    <Label x:Name="lblTotalDocumentos" Content="2" HorizontalAlignment="Left" Margin="430,300,0,0" VerticalAlignment="Top" FontSize="16" Foreground="Navy" FontWeight="Bold"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Historial" Name="tabHistorial">
+                
+            </TabItem>
+
+            <TabItem Header="Seguridad" Name="tabSeguridad" IsEnabled="True" >
+                <Grid Background="#FFE5E5E5">
+                    <!--Detalle del formulario-->
+                    <Label x:Name="label100" Content="Usuario:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Margin="80,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="label101" Content="Contraseña:" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top"/>
+                    <PasswordBox x:Name="txtClave" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="120" PasswordChar="*"/>
+                    <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="460,10,0,0" VerticalAlignment="Top" Click="btnLogin_Click"/>
+                    <Label x:Name="lblnombreusuario" Content="Nombre Usuario:" HorizontalAlignment="Left" Margin="520,10,0,0" VerticalAlignment="Top" FontWeight="SemiBold" Visibility="Hidden" Foreground="Green"/>
+                    <Label x:Name="lblareausuario" Content="Area Usuario:" HorizontalAlignment="Left" Margin="520,30,0,0" VerticalAlignment="Top" FontWeight="SemiBold" Visibility="Hidden" Foreground="Green"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</mah:MetroWindow>
