@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -54,6 +55,12 @@ namespace CarteraSaneada
                 MessageBox.Show("Su versión de aplicación ya no es válida, favor comunicarse con el Administrador!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error);
                 System.Windows.Application.Current.Shutdown();
             }
+        }
+
+        // Evento para exportar los datos a CSV
+        private void btnCSV_Click(object sender, RoutedEventArgs e)
+        {
+            Exportar_CSV();
         }
 
         // Evento del boton login
@@ -183,6 +190,38 @@ namespace CarteraSaneada
             // 
             if (txtSaldoP.Text == "") { MessageBox.Show("El total a pagar no puede ser 0.00!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error); }
             else { Aplicar_Pago(); }           
+        }
+
+        // Metodo para exportar a CSV
+        private void Exportar_CSV()
+        {
+            string strSql = @"select c.NO_DOCUMENTO, c.FECHA_DOCUMENTO, C.FECHA_VENCIMIENTO_DOCUMENTO, C.TIPO_DOCUMENTO, case id_empresa when 1 then 'CANELLA' when 2 then 'MR. CREDIT' end as EMPRESA, C.MARCA_EMPRESA, 
+                            C.SERIE_DOCUMENTO_FACTURA, C.NO_DOCUMENTO_FACTURA, C.CODIGO_CLIENTE, C.NOMBRE_CLIENTE, C.DIRECCION_CASA_CLIENTE, c.TOTAL_CUOTA as TOTAL_DOCUMENTO, 
+                            c.total_cuota - (c.total_pagado + (select SUM(monto_cuota+monto_interes+monto_recargos) as total from CS_Pagos where NO_DOCUMENTO = C.NO_DOCUMENTO)) as SALDO,
+                            case cancelada when 0 then 'NO CANCELADA' when 1 then 'CANCELADA' end as CANCELADA,
+                            C.FECHA_PERDIDA
+                            from CS_Cuentas C";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connUtil = new SqlConnection(connStringUTILS))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(strSql, connUtil))
+                {
+                    connUtil.Open();
+
+                    da.Fill(dt);
+
+                    connUtil.Close();
+                }
+            }
+           
+            // Genera el reporte y lo deposita en el escritorio
+            string filename = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\CarteraSaneada.csv";
+
+            dt.ToCSV(filename);
+
+            MessageBox.Show("Reporte generado y depositado en el Escritorio!", "Datos", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         // Metodo para validar las credenciales
@@ -350,7 +389,7 @@ namespace CarteraSaneada
                         {
                             // Inserta el pago
                             string strInsert = @"insert into CS_Pagos values ('" + dt.Rows[intIndice[i - 1]]["no_documento"].ToString() + "',getdate()," + Convert.ToDouble(txtMontoP.Text) / intDocumentos + ","
-                                + Convert.ToDouble(txtInteresP.Text) / intDocumentos + "," + Convert.ToDouble(txtRecargoP.Text) / intDocumentos + "," + intTransaccion + ",'{JSON}','admin','" + txtComentarios.Text + "')";
+                                + Convert.ToDouble(txtInteresP.Text) / intDocumentos + "," + Convert.ToDouble(txtRecargoP.Text) / intDocumentos + "," + intTransaccion + ",'{JSON}','" + txtUsuario.Text + "','" + txtComentarios.Text + "')";
 
                             command.CommandText = strInsert;
                             int intValida = command.ExecuteNonQuery();
@@ -1305,6 +1344,50 @@ namespace CarteraSaneada
                 // Limpia la pantalla
                 Limpiar_Aplicacion();
             }
+        }
+    }
+
+    // Clase que define la extensión del método para el CSV
+    public static class CSVUtlity
+    {
+        public static void ToCSV(this DataTable dtDataTable, string strFilePath)
+        {
+            StreamWriter sw = new StreamWriter(strFilePath, false);
+            //headers    
+            for (int i = 0; i < dtDataTable.Columns.Count; i++)
+            {
+                sw.Write(dtDataTable.Columns[i]);
+                if (i < dtDataTable.Columns.Count - 1)
+                {
+                    sw.Write(",");
+                }
+            }
+            sw.Write(sw.NewLine);
+            foreach (DataRow dr in dtDataTable.Rows)
+            {
+                for (int i = 0; i < dtDataTable.Columns.Count; i++)
+                {
+                    if (!Convert.IsDBNull(dr[i]))
+                    {
+                        string value = dr[i].ToString();
+                        if (value.Contains(','))
+                        {
+                            value = String.Format("\"{0}\"", value);
+                            sw.Write(value);
+                        }
+                        else
+                        {
+                            sw.Write(dr[i].ToString());
+                        }
+                    }
+                    if (i < dtDataTable.Columns.Count - 1)
+                    {
+                        sw.Write(",");
+                    }
+                }
+                sw.Write(sw.NewLine);
+            }
+            sw.Close();
         }
     }
 }

@@ -25,9 +25,10 @@
                     <!--Cabecera para la busqueda-->
                     <Label x:Name="label" Content="Nombre del Cliente:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                     <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Margin="140,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="0" CharacterCasing="Upper"/>
-                    <Label x:Name="label51" Content="Código:" HorizontalAlignment="Left" Margin="460,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Margin="520,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" TabIndex="1" CharacterCasing="Upper"/>
-                    <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="655,10,0,0" VerticalAlignment="Top" TabIndex="2" Click="btnBuscar_Click"/>
+                    <Label x:Name="label51" Content="Código:" HorizontalAlignment="Left" Margin="445,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Margin="505,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" TabIndex="1" CharacterCasing="Upper"/>
+                    <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="615,10,0,0" VerticalAlignment="Top" TabIndex="2" Click="btnBuscar_Click"/>
+                    <Button x:Name="btnCSV" Content="Todas las cuentas" HorizontalAlignment="Left" Margin="675,10,0,0" VerticalAlignment="Top" TabIndex="3" Click="btnCSV_Click" FontSize="08"/>
 
                     <!--Detalle de la cabecera de campos-->
                     <Label x:Name="label1" Content="Código:" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" FontSize="16"/>
